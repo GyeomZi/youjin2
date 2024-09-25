@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100일 축하 미션</title>
+    <link rel="stylesheet" href="ujin.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1262eb71f0f0cbbe9f016e5295069e5a
+    "></script> <!-- 새로운 API 키로 변경 -->
+    <style>
+        /* 지도 컨테이너 스타일 */
+        #map-container {
+            display: none;
+            /* 처음에는 숨김 */
+            width: 100%;
+            /* 너비 100% */
+            height: 80vh;
+            /* 높이를 80vh로 설정하여 화면의 80% 차지 */
+        }
+
+        #kakaoMap {
+            width: 100%;
+            /* Kakao 맵의 너비 */
+            height: 100%;
+            /* Kakao 맵의 높이 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>💖 100일 축하 미션 💖</h1>
+    </header>
+    <button id="tester-button">테스터용 버튼</button>
+
+    <div id="game">
+        <!-- 미션 1 -->
+        <p id="instruction">미션 1: 숨겨진 선물을 찾아보세요!</p>
+        <div id="grid">
+            <div class="box" onclick="checkBox(1)"></div>
+            <div class="box" onclick="checkBox(2)"></div>
+            <div class="box" onclick="checkBox(3)"></div>
+            <div class="box" onclick="checkBox(4)"></div>
+            <div class="box" onclick="checkBox(5)"></div>
+            <div class="box" onclick="checkBox(6)"></div>
+            <div class="box" onclick="checkBox(7)"></div>
+            <div class="box" onclick="checkBox(8)"></div>
+            <div class="box" onclick="checkBox(9)"></div>
+        </div>
+        <p id="message"></p>
+        <div id="reward" style="visibility:hidden;">
+            <img src="gift.png" id="rewardImage" alt="선물" />
+        </div>
+
+        <!-- 미션 2 -->
+        <div id="quiz" style="display:none;">
+            <div class="quiz-container">
+                <p id="quiz-question">100일 기념일은 언제?</p>
+                <input type="text" id="quiz-answer" placeholder="답변을 입력하세요">
+                <button onclick="checkAnswer()">답변 확인</button>
+                <p id="quiz-message" style="visibility:hidden;"></p>
+            </div>
+        </div>
+
+        <!-- 미션 3 -->
+        <div id="maze" style="display:none;">
+            <p id="maze-instruction">미션 3: 몬스터를 피해서 목표 지점에 도달하세요!</p>
+            <div id="maze-container">
+                <div id="player"></div>
+                <div id="monster"></div>
+                <div id="goal"
+                    style="position:absolute; background-color: yellow; width: 20px; height: 20px; left: 280px; top: 280px;">
+                </div>
+            </div>
+            <p id="lives">남은 생명: <span id="life-count">3</span></p>
+            <div id="joystick">
+                <button onmousedown="startMoving('up')" onmouseup="stopMoving()" onmouseleave="stopMoving()">↑</button>
+                <button onmousedown="startMoving('down')" onmouseup="stopMoving()"
+                    onmouseleave="stopMoving()">↓</button>
+                <button onmousedown="startMoving('left')" onmouseup="stopMoving()"
+                    onmouseleave="stopMoving()">←</button>
+                <button onmousedown="startMoving('right')" onmouseup="stopMoving()"
+                    onmouseleave="stopMoving()">→</button>
+            </div>
+        </div>
+   <!-- 미션 4 - 카카오 지도 -->
+<div id="map-container" style="display:none;">
+    <p>미션 4: 지도에서 원하는 위치를 찾아보세요!</p>
+    <div id="kakaoMap"></div>
+</div>
+
+    </div>
+
+    <script src="ujin.js"></script>
+    <script src="ujin2.js"></script>
+    <script>
+        // 카카오 지도 초기화
+        function initKakaoMap() {
+            var container = document.getElementById('kakaoMap'); // 지도를 표시할 div
+            var options = {
+                center: new kakao.maps.LatLng(36.35476, 127.392083), // 로드락비어 대전봉명점의 좌표
+                level: 3 // 지도 확대 레벨
+            };
+            var map = new kakao.maps.Map(container, options); // 지도 생성
+
+            // 마커 추가
+            var markerPosition = new kakao.maps.LatLng(36.35476, 127.392083);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(map);
+
+            // 마커 클릭 이벤트
+            kakao.maps.event.addListener(marker, 'click', function () {
+                alert('로드락비어 대전봉명점'); // 마커 클릭 시 메시지
+                window.location.href = "ujin2.html"; // 새로운 페이지로 이동
+            });
+        }
+
+        // 미션 4 시작 함수
+        function startMission4() {
+            document.getElementById('game').style.display = 'none'; // 기존 게임 숨기기
+            document.getElementById('map-container').style.display = 'block'; // 미션 4 표시
+            initKakaoMap(); // 카카오 지도 초기화
+        }
+
+        // 테스터 버튼 클릭 시 미션 4로 이동
+        document.getElementById('tester-button').onclick = function () {
+            startMission4(); // 미션 4 시작
+        };
+
+        // 페이지 로드 시 게임을 표시
+        window.onload = function () {
+            document.getElementById('game').style.display = 'block'; // 게임 표시
+        };
+    </script>
+</body>
+
+</html>
