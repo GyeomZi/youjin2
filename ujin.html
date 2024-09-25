@@ -6,24 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100일 축하 미션</title>
     <link rel="stylesheet" href="ujin.css">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1262eb71f0f0cbbe9f016e5295069e5a
-    "></script> <!-- 새로운 API 키로 변경 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1262eb71f0f0cbbe9f016e5295069e5a"></script> <!-- 새로운 API 키로 변경 -->
     <style>
         /* 지도 컨테이너 스타일 */
         #map-container {
-            display: none;
-            /* 처음에는 숨김 */
-            width: 100%;
-            /* 너비 100% */
-            height: 80vh;
-            /* 높이를 80vh로 설정하여 화면의 80% 차지 */
+            display: none; /* 처음에는 숨김 */
+            width: 100%; /* 너비 100% */
+            height: 80vh; /* 높이를 80vh로 설정하여 화면의 80% 차지 */
         }
 
         #kakaoMap {
-            width: 100%;
-            /* Kakao 맵의 너비 */
-            height: 100%;
-            /* Kakao 맵의 높이 */
+            width: 100%; /* Kakao 맵의 너비 */
+            height: 100%; /* Kakao 맵의 높이 */
         }
     </style>
 </head>
@@ -84,11 +78,12 @@
                     onmouseleave="stopMoving()">→</button>
             </div>
         </div>
-   <!-- 미션 4 - 카카오 지도 -->
-<div id="map-container" style="display:none;">
-    <p>미션 4: 지도에서 원하는 위치를 찾아보세요!</p>
-    <div id="kakaoMap"></div>
-</div>
+
+        <!-- 미션 4 - 카카오 지도 -->
+        <div id="map-container" style="display:none;">
+            <p>미션 4: 지도에서 원하는 위치를 찾아보세요!</p>
+            <div id="kakaoMap"></div>
+        </div>
 
     </div>
 
@@ -134,6 +129,15 @@
         window.onload = function () {
             document.getElementById('game').style.display = 'block'; // 게임 표시
         };
+
+        // 마우스 우클릭 및 드래그 방지
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault(); // 우클릭 메뉴 방지
+        });
+
+        document.addEventListener('dragstart', function (e) {
+            e.preventDefault(); // 드래그 방지
+        });
     </script>
 </body>
 
