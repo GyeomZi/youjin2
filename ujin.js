@@ -20,7 +20,7 @@ function checkBox(boxNumber) {
                 startMission2();
             }, 3000);
         } else {
-            showFailure("why??? 땡 ! 틀렸어 다시 시도해봐.");
+            showFailure("⸌◦̈⃝⸍ʷʰʸˀ̣ˀ̣ˀ̣ 땡 ! 틀렸어 다시 시도해봐.");
         }
         animateBox(boxNumber);
     }
@@ -70,7 +70,7 @@ function checkAnswer() {
             startMission3();
         }, 2000);
     } else {
-        quizMessage.textContent = "why??? 땡 ! 틀렸어 다시 시도해봐.";
+        quizMessage.textContent = "⸌◦̈⃝⸍ʷʰʸˀ̣ˀ̣ˀ̣ 땡 ! 틀렸어 다시 시도해봐.";
         setTimeout(() => {
             quizMessage.style.visibility = 'hidden';
         }, 2000);
