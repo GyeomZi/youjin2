@@ -1,3 +1,4 @@
+
 let mission = 1;
 let hiddenBox = Math.floor(Math.random() * 9) + 1;
 let messageElement = document.getElementById('message');
@@ -14,13 +15,13 @@ let map; // 지도 변수 전역으로 선언
 function checkBox(boxNumber) {
     if (mission === 1) {
         if (boxNumber === hiddenBox) {
-            showSuccess("축하합니다! 선물을 찾으셨습니다!");
+            showSuccess("축하해! 너 오늘은 좀 치네 ㅋ 다음 미션으로 넘어갈게.");
             showReward();
             setTimeout(() => {
                 startMission2();
             }, 3000);
         } else {
-            showFailure("다시 시도해보세요.");
+            showFailure("why??? 땡 ! 틀렸어 다시 시도해봐.");
         }
         animateBox(boxNumber);
     }
@@ -60,17 +61,17 @@ function startMission2() {
 
 function checkAnswer() {
     let answer = document.getElementById('quiz-answer').value;
-    let correctAnswer = "1"; // 맞는 답변
+    let correctAnswer = "174"; // 맞는 답변
     let quizMessage = document.getElementById('quiz-message');
     quizMessage.style.visibility = 'visible';
 
     if (answer === correctAnswer) {
-        quizMessage.textContent = "정답입니다! 다음 미션으로 넘어갑니다.";
+        quizMessage.textContent = "축하해! 너 오늘은 좀 치네 ㅋ 다음 미션으로 넘어갈게.";
         setTimeout(() => {
             startMission3();
         }, 2000);
     } else {
-        quizMessage.textContent = "틀렸습니다. 다시 시도해보세요.";
+        quizMessage.textContent = "why??? 땡 ! 틀렸어 다시 시도해봐.";
         setTimeout(() => {
             quizMessage.style.visibility = 'hidden';
         }, 2000);
